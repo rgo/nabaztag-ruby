@@ -2,7 +2,11 @@
 
 require 'nabaztag'
 require 'optparse'
-load ENV['HOME'] + '/.nabaztag' rescue nil
+begin
+  load ENV['HOME'] + '/.nabaztag'
+rescue LoadError => e
+  NABAZTAG_MAC = NABAZTAG_TOKEN = nil
+end
 
 OPTIONS = {
   :mac   => NABAZTAG_MAC,
